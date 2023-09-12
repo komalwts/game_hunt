@@ -5,53 +5,74 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import img from './img/6228df0a7534e96af7ee1ead_Rusk-Logo.png';
 import { Button, Form } from "react-bootstrap";
-import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import Slider from './Slider';
-import ReactDOM from 'react-dom/client';
-import React from 'react';
+import { useEffect, useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Link, useNavigate } from "react-router-dom";
+
 
 function Login() {
 
     const [username, usernameupdate] = useState('');
     const [password, passwordupdate] = useState('');
 
-    // const navigate = useNavigate();
+    const usenavigate = useNavigate();
+
+    useEffect(() => {
+        sessionStorage.clear();
+    }, []);
+
+    const toastSuccess = () => toast.success('Success');
+    const toastWarn = () => toast.warn('Please Enter Username');
+    const toastWarn1 = () => toast.warn('Please Enter Password');
+    const toastError = () => toast.error('Please Enter valid username');
+    const toastError1 = () => toast.error('Please Enter valid credentials');
+    const toastError2 = () => toast.error('Login Failed');
 
     const ProceedLogin = (e) => {
         e.preventDefault();
         if (validate()) {
+            // usenavigate('/dashboard')
+            ///implentation
             console.log(username);
-            fetch("http://localhost:3000/user/" + username).then((res) => {
+            fetch("http://localhost:4000/user/" + username).then((res) => {
                 return res.json();
             }).then((resp) => {
                 console.log(resp)
                 if (Object.keys(resp).length === 0) {
-                    toast.error('Please Enter valid username');
+                    // toast.error('Please Enter valid username');
+                    toastError();
                 } else {
                     if (resp.password === password) {
-                        toast.success('Success');
-                        // usenavigate('/')
+                        // toast.success('Success');
+                        toastSuccess();
+                        sessionStorage.setItem('username', username);
+                        sessionStorage.setItem('userrole', resp.role);
+                        usenavigate('/dashboard')
                     } else {
-                        toast.error('Please Enter valid credentials');
+                        // toast.error('Please Enter valid credentials');
+                        toastError1();
                     }
                 }
             }).catch((err) => {
-                toast.error('Login Failed due to :' + err.message);
+                // toast.error('Login Failed due to :' + err.message);
+                toastError2();
             });
         }
     }
+
 
     const validate = () => {
         let result = true;
         if (username === '' || username === null) {
             result = false;
-
+            // toast.warning('Please Enter Username');
+            toastWarn();
         }
         if (password === '' || password === null) {
             result = false;
-
+            // toast.warning('Please Enter Password');
+            toastWarn1();
         }
         return result;
     }
@@ -116,6 +137,17 @@ function Login() {
 
                 </Col>
             </Row>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </div>
     );
 }
