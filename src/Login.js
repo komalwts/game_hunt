@@ -6,9 +6,11 @@ import Col from 'react-bootstrap/Col';
 import img from './img/6228df0a7534e96af7ee1ead_Rusk-Logo.png';
 import { Button, Form } from "react-bootstrap";
 import { useState } from 'react';
-import {  useNavigate } from "react-router-dom";
-import {  toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import Slider from './Slider';
+import ReactDOM from 'react-dom/client';
+import React from 'react';
 
 function Login() {
 
@@ -21,7 +23,6 @@ function Login() {
         e.preventDefault();
         if (validate()) {
             console.log(username);
-            <Slider />
             fetch("http://localhost:3000/user/" + username).then((res) => {
                 return res.json();
             }).then((resp) => {
