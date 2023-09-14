@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "name": "Swades",
+    "activated": "11 Jun '22",
+    "games": 12,
+    "gameplay": "1,300,000",
+    "rewared": "₹10,00,000",
+    "status": "Active"
+  },
+  {
+    "id": 1,
+    "name": "Swades",
+    "activated": "11 Jun '22",
+    "games": 12,
+    "gameplay": "1,300,000",
+    "rewared": "₹10,00,000",
+    "status": "Active"
+  },
+  {
+    "id": 1,
+    "name": "Swades",
+    "activated": "11 Jun '22",
+    "games": 12,
+    "gameplay": "1,300,000",
+    "rewared": "₹10,00,000",
+    "status": "Active"
+  },
+  {
+    "id": 1,
+    "name": "Swades",
+    "activated": "11 Jun '22",
+    "games": 12,
+    "gameplay": "1,300,000",
+    "rewared": "₹10,00,000",
+    "status": "IN Active"
+  },
+  {
+    "id": 1,
+    "name": "Swades",
+    "activated": "11 Jun '22",
+    "games": 12,
+    "gameplay": "1,300,000",
+    "rewared": "₹10,00,000",
+    "status": "IN Draft"
+  }
+  ]
